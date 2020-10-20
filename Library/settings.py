@@ -27,7 +27,7 @@ SECRET_KEY = '=9h8ir!*!ajse9mhto&fsb+fab7&ufjdfq)89w=tdf-gmxh7%_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://naiem-library.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = ['naeim-library.herokuapp.com' '','127.0.0.1']
 
 
 # Application definition
