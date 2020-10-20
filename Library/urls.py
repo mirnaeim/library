@@ -21,6 +21,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, re_path, include
 
+
 urlpatterns = [
     path('', author_view.base),
     path('accounts/profile/',member_view.profile, name = 'profile'),
@@ -35,6 +36,5 @@ urlpatterns = [
     #re_path(r'^member/', include("member.urls", namespace='member')),
 ]
 
-if settings.DEBUG:
-        urlpatterns += static(settings.MEDIA_URL,
-                              document_root=settings.MEDIA_ROOT)
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
