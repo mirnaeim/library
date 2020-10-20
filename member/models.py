@@ -45,6 +45,7 @@ def remove_borrow_record(sender, instance, **kwargs):
     if borrow_record:
         borrow_record[0].delete()
 
+
 @receiver(pre_delete, sender=Borrow)
 def decrease_borrowed_num(sender, instance, **kwargs):
     user_prof = Profile.objects.get(user__username = instance.member.username)
