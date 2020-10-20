@@ -46,6 +46,9 @@ def returning(request,slug):
     return redirect('profile')
 
 def profile(request):
+    if not request.user.is_authenticated:
+        return redirect('/accounts/login')
+
     member = request.user
     books = []
     # Could I use len(books) instead of all num_borrowed things ???

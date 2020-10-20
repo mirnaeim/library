@@ -96,23 +96,32 @@ def create(request):
         }
         return render(request=request, template_name="authors/form.html", context=context)
 
+#
+#def ser(request):
+#    if not request.user.is_staff or not request.user.is_superuser:
+#        raise Http404
+#    data = serializers.serialize("json", Book.objects.all())
+#    with open("Books.json", mode='a', encoding='utf-8') as f:
+#        f.write(data)
+#    print(data)
+#    return redirect("authors:retrive")
 
-def ser(request):
+
+def deser_book(request):
     if not request.user.is_staff or not request.user.is_superuser:
         raise Http404
-    data = serializers.serialize("json", Book.objects.all())
-    with open("Books.json", mode='a', encoding='utf-8') as f:
-        f.write(data)
-    print(data)
-    return redirect("authors:retrive")
+    with open("serialized/Books.json", mode='r', encoding='utf-8') as f:
+        data = f.read()
+        for obj in serializers.deserialize("json", data):
+            obj.save()
+    return redirect("books:retrive")
 
 
-def deser(request):
+def deser_author(request):
     if not request.user.is_staff or not request.user.is_superuser:
         raise Http404
-    with open("books.json", mode='r', encoding='utf-8') as f:
+    with open("serialized/Authors.json", mode='r', encoding='utf-8') as f:
         data = f.read()
         for obj in serializers.deserialize("json", data):
             obj.save()
     return redirect("authors:retrive")
-
